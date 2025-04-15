@@ -1,0 +1,90 @@
+global pi
+pi = 3.1415927
+
+fn floor(x)
+	o = x % 1
+	return x - o
+end
+fn ceil(x)
+	o = x % 1
+	return x + (1 - o)
+end
+fn round(x)
+	o = x % 1
+	if o >= 0.5
+		return ceil(x)
+	else
+		return floor(x)
+	end
+end
+
+fn factorial(x)
+	n = 1
+	for i in range(x)
+		n = n * (i + 1)
+	end
+	return n
+end
+
+fn pow(x, e)
+	if e == 0
+		return 1
+	end
+	n = 1
+	for i in range(e)
+		n = n * x
+	end
+	return n
+end
+
+fn pow(x)
+	return x * x
+end
+
+fn sin(x)
+	terms = 10
+	sin_x = 0
+	x = x % (2 * pi)
+	for i in range(terms)
+		sign = pow(-1, i)
+		numerator = pow(x, 2 * i + 1)
+		denominator = factorial(2 * i + 1)
+		sin_x = sin_x + sign * (numerator / denominator)
+	end
+	return sin_x
+end
+
+fn sin(x, terms)
+	sin_x = 0
+	x = x % (2 * pi)
+	for i in range(terms)
+		sign = pow(-1, i)
+		numerator = pow(x, 2 * i + 1)
+		denominator = factorial(2 * i + 1)
+		sin_x = sin_x + sign * (numerator / denominator)
+	end
+	return sin_x
+end
+
+fn cos(x)
+	return sin(x + (pi / 2))
+end
+fn cos(x, terms)
+	return sin(x + (pi / 2), terms)
+end
+
+fn min(x, y)
+	if x > y
+		return y
+	end
+	return x
+end
+fn max(x, y)
+	if x < y
+		return y
+	end
+	return x
+end
+fn clamp(v, mn, mx)
+	return max(min(v, mx), mn)
+end
